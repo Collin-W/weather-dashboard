@@ -1,61 +1,119 @@
-// var lat = 44.98;
-// var lon = -93.25;
-
-// function weatherData() {
-// //     fetch('https://api.openweathermap.org/data/2.5/onecall?'
-
-
-    
-// //    + 'lat=' + JSON.stringify(lat)
-// //    + '&lon=' + JSON.stringify(lon)
-
-  
-// //    + '&appid=a278107ddd3948f0d3f900ddd0dc1432')
+var dash = document.querySelector("#city-dash")
 
 
 
 
-// fetch('api.openweathermap.org/data/2.5/weather?zip=55109,us&appid='
+//accepts the location argument into the fetch function, returning a temperature of location converted to fahrenheit
+function weatherSearch(location) {
 
-// + '&appid=a278107ddd3948f0d3f900ddd0dc1432')
-
-//     .this(response => response.json())
-//     .this(response => console.log(response.data))
-// };
-
-// weatherData();
-
-
-
-// Minneapolis, Minnesota
-
-
-
-function weatherSearch() {
-
-var searchCity = document.querySelector('#search-city').value.trim();
-
+//var fetchURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + location + + '&appid=a278107ddd3948f0d3f900ddd0dc1432';
+//https://api.openweathermap.org/data/2.5/weather?q=
 fetch('https://api.openweathermap.org/data/2.5/weather?q='
 
-+ searchCity
-//+ 'Minneapolis, Minnesota'
+
++ 'Minneapolis, Minnesota'
+//+ location
 
 + '&appid=a278107ddd3948f0d3f900ddd0dc1432')
-.then(response => response.json())
-.then(response => console.log(response))
 
+.then(response => response.json())
+.then(response => {
+
+
+    console.log(response.main.temp);
+
+    var kelvinData = response.main.temp;
+    var humidityData = response.main.humidity;
+    console.log(humidityData)
+    var pressureData = response.main.pressure;
+    console.log(pressureData)
+    var windSpeedData = response.wind.speed;
+    console.log(JSON.stringify(windSpeedData))
+    var iconData = JSON.stringify(response.weather.description);
+    console.log(iconData)
+
+    var kelvinToFahrenheit = ((kelvinData - 273.15) * 9/5 + 32);
+    // var test = System.out.printIn(kelvinToFahrenheit)
+    // console.log(test)
+    var fahrenheitTemp = Math.round(kelvinToFahrenheit);
+    console.log(fahrenheitTemp);
+    renderWeatherSearch(fahrenheitTemp, humidityData, pressureData, windSpeedData, iconData);
+
+});
 };
 
 
-weatherSearch();
+var renderWeatherSearch= function(temp, humid, pres, wind, icon) {
 
-function searchButtonHandler() {
+   var cityTemp = document.createElement('p');
+   cityTemp.setAttribute("id", "city-temp");
+   cityTemp.textContent= "Temp: " + temp + "°F";
+   dash.appendChild(cityTemp);
 
+   var cityHumidity = document.createElement('p');
+   cityHumidity.setAttribute("id", "")
+   cityHumidity.setAttribute("class", "")
+   cityHumidity.textContent= "Humidity: " + humid + "%";
+   dash.appendChild(cityHumidity);
+
+   var cityPressure = document.createElement('p');
+   cityPressure.setAttribute("id", "")
+   cityPressure.setAttribute("class", "")
+   cityPressure.textContent= "Pressure: " + pres + "mb";
+   dash.appendChild(cityPressure);
+
+   var cityWind = document.createElement('p');
+   cityWind.setAttribute("id", "")
+   cityWind.setAttribute("class", "")
+   cityWind.textContent= "Wind: " + wind + "mph";
+   dash.appendChild(cityWind);
+
+   var icon = document.createElement('i');
+   icon.setAttribute("id", "")
+   icon.setAttribute("class", "far fa-cloud")
+   icon.setAttribute("aria-hidden", "true")
+   icon.textContent= icon;
+   dash.appendChild(icon);
+};
+
+
+// var = document.createElement('p');
+//    .setAttribute("id", "")
+//    .setAttribute("class", "")
+//    .textContent= "" + + "";
+//    dash.appendChild();
+
+function forecastWeatherCards(location) {
+
+
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='
+
+    + location
     
+    + '&appid=a278107ddd3948f0d3f900ddd0dc1432')
+    
+    .then(response => response.json())
+    .then(response => {
 
-$('button#search').onclick(weatherSearch())
 
-}
+        for(var i = 1; i <= 5; i++) {
+       var temp = response.list[i].main.temp
+       var humidity = response.list[i].main.humidity
+       var date = response.list[i].dt_text
+       var wind = response.list[i].wind.speed
+       var icon = response.list[i].weather.icon
+        };
+    });
+};
 
-//button click
-// value of button passed into weatherSearch para
+//Listens for the search button click, then sends the value of the search textarea to the weatherSearch function
+$('#search').click(function(){
+    var searchCity = document.querySelector('#search-city').value.trim();
+    weatherSearch(searchCity);
+    forecastWeatherCards(searchCity);
+});
+
+$('button').click(function() {
+    var btnValue = $(this).attr('value');
+    console.log(btnValue);
+});
