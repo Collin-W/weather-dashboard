@@ -11,8 +11,8 @@ function weatherSearch(location) {
 fetch('https://api.openweathermap.org/data/2.5/weather?q='
 
 
-+ 'Minneapolis, Minnesota'
-//+ location
+//+ 'Minneapolis, Minnesota'
++ location
 
 + '&appid=a278107ddd3948f0d3f900ddd0dc1432')
 
@@ -20,7 +20,10 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='
 .then(response => {
 
 
-    console.log(response.main.temp);
+    var cityName = location
+
+    var dateTime = moment().format('MMMM Do YYYY');
+    console.log(dateTime);
 
     var kelvinData = response.main.temp;
     var humidityData = response.main.humidity;
@@ -37,13 +40,29 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='
     // console.log(test)
     var fahrenheitTemp = Math.round(kelvinToFahrenheit);
     console.log(fahrenheitTemp);
-    renderWeatherSearch(fahrenheitTemp, humidityData, pressureData, windSpeedData, iconData);
+    renderWeatherSearch(cityName, dateTime,
+        fahrenheitTemp, humidityData, pressureData, windSpeedData, iconData);
+        //currentData,
 
 });
 };
 
 
-var renderWeatherSearch= function(temp, humid, pres, wind, icon) {
+var renderWeatherSearch= function(city, date,
+    temp, humid, pres, wind, icon) {
+
+
+    var cityName = document.createElement('p');
+    cityName.setAttribute("id", "")
+    cityName.setAttribute("class", "")
+    cityName.textContent= "" + city + "";
+    dash.appendChild(cityName);
+
+    var dateTime = document.createElement('p');
+    dateTime.setAttribute("id", "");
+    dateTime.setAttribute("class", "");
+    dateTime.textContent= date;
+    dash.appendChild(dateTime);
 
    var cityTemp = document.createElement('p');
    cityTemp.setAttribute("id", "city-temp");
@@ -116,4 +135,6 @@ $('#search').click(function(){
 $('button').click(function() {
     var btnValue = $(this).attr('value');
     console.log(btnValue);
+    weatherSearch(btnValue);
 });
+

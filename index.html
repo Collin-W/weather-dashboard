@@ -12,28 +12,28 @@
 <body>
 
 
-<div class="container ">
-    <div class="row">
-    <nav class="nav-bar col-12 bg-blue">
+<header>
+
+    <nav class="nav-bar">
         <h1 class="h1-text" style="text-align: center;">Weather Dashboard</h1>
     </nav>
-    </div>
-</div>
-    <section class="container justify-content-between">
+    
+</header>
+    <section id="main-section" class="container justify-content-between">
         <div class="row">
 
         <div class="cities col-3">
             <h2 class="col-12">Placeholder</h2>
 
-            <textarea id="search-city" class="col-12"></textarea>
-            <button id="search" class="col-12">Search</button>
+            <textarea id="search-city" class="col-12" placeholder="Enter A City Name!"></textarea>
+            <button id="search" class=" city-btn col-12">Search</button>
             
-            <button class="col-12" value="Saint Paul, Mn, USA">Saint Paul, Mn</button>
-            <button class="col-12" value="Honolulu, Hi, USA">Honolulu, Hi</button>
-            <button class="col-12" value="Juneau, Ak, USA">Juneau, Ak</button>
-            <button class="col-12" value="Portland, Or, USA">Portland, Or</button>
-            <button class="col-12" value="New York, Ny, USA">New York, Ny</button>
-            <button class="col-12" value="San Juan, Pr, USA">San Juan, Pr</button>
+            <button class="city-btn col-12" value="Saint Paul, Mn, USA">Saint Paul, Mn</button>
+            <button class="city-btn col-12" value="Honolulu, Hi, USA">Honolulu, Hi</button>
+            <button class="city-btn col-12" value="Juneau, Ak, USA">Juneau, Ak</button>
+            <button class="city-btn col-12" value="Portland, Or, USA">Portland, Or</button>
+            <button class="city-btn col-12" value="New York, Ny, USA">New York, Ny</button>
+            <button class="city-btn col-12" value="San Juan, Pr, USA">San Juan, Pr</button>
         </div>
 
 
@@ -52,39 +52,39 @@
         
 
            <div class="container">
-            <div class="cards container ">
+            <div class="cards-container container ">
                 <div class="row justify-content-between">
 
             <div class="card col-2">
-                <div  id="monday" class="card-body">
+                <div  id="1" class="card-body">
                     <h5 class="card-title">title</h5>
                     <p class="card-text">voluptatem rem aperiam</p>
                 </div>
             </div>
 
             <div class="card col-2">
-                <div id="tuesday" class="card-body">
+                <div id="2" class="card-body">
                     <h5 class="card-title">title</h5>
                     <p class="card-text">voluptatem rem aperiam</p>
                 </div>
             </div>
 
             <div class="card col-2">
-                <div id="wend" class="card-body">
+                <div id="3" class="card-body">
                     <h5 class="card-title">title</h5>
                     <p class="card-text">voluptatem rem aperiam</p>
                 </div>
             </div>
 
             <div class="card col-2">
-                <div id="thursday class="card-body">
+                <div id="4" class="card-body">
                     <h5 class="card-title">title</h5>
                     <p class="card-text">voluptatem rem aperiam</p>
                 </div>
             </div>
 
             <div class="card col-2">
-                <div id="friday" class="card-body">
+                <div id="5" class="card-body">
                     <h5 class="card-title">title</h5>
                     <p class="card-text">voluptatem rem aperiam</p>
                 </div>
@@ -102,6 +102,7 @@
 
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
