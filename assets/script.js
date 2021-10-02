@@ -1,6 +1,6 @@
 var dash = document.querySelector("#city-dash");
-
-
+var counter = 0;
+var dataArray = [];
 
 
 //accepts the location argument into the fetch function, returning a temperature of location converted to fahrenheit
@@ -168,6 +168,11 @@ function forecastWeatherCards(location) {
         var list = response.list;
         console.log(list)
 
+
+        // var newList = list.filter(date => list.dt_txt = list.dt_txt.includes('12:00:00'))
+        // console.log(newList)
+
+
         for(var i = 0; i < list.length; i++) {
 
             if(list[i].dt_txt.endsWith('12:00:00')) {
@@ -180,35 +185,45 @@ function forecastWeatherCards(location) {
        var humidity = list[i].main.humidity
        var wind = list[i].wind.speed
        var icon = list[i].weather.icon
-       var hi = 0;
+      
        
-       hi++
        
+      var dataObject = {
+        'date': date,
+        'temp': temp
+    };
+
+    dataArray.push(dataObject);
+    console.log(dataArray);
+
+
+
 
       
 
-       renderForecastCards(date, temp, humidity, wind, icon, hi)
-     
-        
             };
-          
         };
-        
+        renderForecastCards(dataArray)
     });
 };
-forecastWeatherCards('Minneapolis');
 
-function renderForecastCards(date, temp, humid, wind, icon, hi) {
+
+
+function renderForecastCards(dataArray) {
+
+for(var i = 0; i < dataArray.length; i++) {
+
     var cardDate = document.createElement('p');
     //    cardDate.setAttribute("id", "")
     //    cardDate.setAttribute("class", "")
-       cardDate.textContent = date ;
-       
-      $("#" + hi).append(cardDate);
-      console.log(hi)
-
-    
-
+       cardDate.textContent = dataArray[i].date ;
+       $('#' + i ).append(cardDate)
+       //i.toString()
+    //     var cardTemp = document.createElement('p');
+    // //    .setAttribute("id", "")
+    // //    .setAttribute("class", "")
+    // cardTemp.textContent= temp;
+}
 }
 
 
@@ -224,6 +239,8 @@ $('button').click(function() {
     console.log(btnValue);
     weatherSearch(btnValue);
 });
+
+forecastWeatherCards('Minneapolis');
 
 // switch (icon) {
 
