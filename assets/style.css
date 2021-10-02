@@ -29,7 +29,7 @@ body {
 
 #city-dash {
     width: 100%;
-    min-height: 200px;
+    min-height: 300px;
     border:3px solid black;
     margin: 5% 3% 5% 3%;
 }
@@ -56,4 +56,9 @@ body {
 .card-title {
     width: 100%;
 
+}
+
+#logo {
+    min-width: 20px;
+    min-height: 20px;
 }

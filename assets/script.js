@@ -1,4 +1,4 @@
-var dash = document.querySelector("#city-dash")
+var dash = document.querySelector("#city-dash");
 
 
 
@@ -32,8 +32,13 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='
     console.log(pressureData)
     var windSpeedData = response.wind.speed;
     console.log(JSON.stringify(windSpeedData))
-    var iconData = JSON.stringify(response.weather.description);
+
+    var iconData = response.weather[0].main.toLowerCase();
+// change this 
+    //var iconData = response.list[0].weather.main.toLowerCase();;
     console.log(iconData)
+//
+
 
     var kelvinToFahrenheit = ((kelvinData - 273.15) * 9/5 + 32);
     // var test = System.out.printIn(kelvinToFahrenheit)
@@ -50,6 +55,38 @@ fetch('https://api.openweathermap.org/data/2.5/weather?q='
 
 var renderWeatherSearch= function(city, date,
     temp, humid, pres, wind, icon) {
+
+console.log(icon);
+
+
+
+//render icons
+   if(icon.startsWith("cloud") === true) {
+       icon = "fas fa-cloud"
+
+} else if(icon.startsWith("sun") === true) {
+    icon = "far fa-snowflake"
+    
+ } else if(icon.startsWith("clear") === true) {
+    icon = "fas fa-sun"
+
+ 
+ } else if(icon.startsWith("rain") === true) {
+    icon = "fas fa-cloud-showers-heavy"
+    
+ } else if(icon.startsWith("mist") === true) {
+    icon = "fas fa-smog"
+    
+ } else if(icon.startsWith("snow") === true) {
+    icon = "far fa-snowflake"
+    
+ } else if(icon.startsWith("partly") === true) {
+    icon = "fas fa-cloud-sun"
+    
+} else {
+    console.log("else");
+};
+
 
 
     var cityName = document.createElement('p');
@@ -87,12 +124,25 @@ var renderWeatherSearch= function(city, date,
    cityWind.textContent= "Wind: " + wind + "mph";
    dash.appendChild(cityWind);
 
-   var icon = document.createElement('i');
-   icon.setAttribute("id", "")
-   icon.setAttribute("class", "far fa-cloud")
-   icon.setAttribute("aria-hidden", "true")
-   icon.textContent= icon;
-   dash.appendChild(icon);
+   
+
+   var iconLogo = document.createElement('i')
+   var h1Tag = document.createElement('h1')
+   iconLogo.setAttribute("class", icon )
+   iconLogo.setAttribute("id", "logo")
+//    iconLogo.setAttribute("aria-hidden", "true")
+
+   dash.appendChild(h1Tag);
+   h1Tag.appendChild(iconLogo);
+   console.log(dash.appendChild(iconLogo));
+
+//    var iconLogo =  iconLogo.innerHTML(icon)
+//    //document.createElement('i');
+//    //iconLogo.setAttribute("id", "")
+  
+//    iconLogo.setAttribute("aria-hidden", "true")
+//    //icon.textContent= icon;
+//    dash.appendChild(iconLogo);
 };
 
 
@@ -105,7 +155,7 @@ var renderWeatherSearch= function(city, date,
 function forecastWeatherCards(location) {
 
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q='
 
     + location
     
@@ -115,15 +165,52 @@ function forecastWeatherCards(location) {
     .then(response => {
 
 
-        for(var i = 1; i <= 5; i++) {
-       var temp = response.list[i].main.temp
-       var humidity = response.list[i].main.humidity
-       var date = response.list[i].dt_text
-       var wind = response.list[i].wind.speed
-       var icon = response.list[i].weather.icon
+        var list = response.list;
+        console.log(list)
+
+        for(var i = 0; i < list.length; i++) {
+
+            if(list[i].dt_txt.endsWith('12:00:00')) {
+                console.log(list[i].dt_txt);
+
+       var date = list[i].dt_txt
+       console.log(date)
+       var temp = list[i].main.temp
+       console.log(temp)
+       var humidity = list[i].main.humidity
+       var wind = list[i].wind.speed
+       var icon = list[i].weather.icon
+       var hi = 0;
+       
+       hi++
+       
+
+      
+
+       renderForecastCards(date, temp, humidity, wind, icon, hi)
+     
+        
+            };
+          
         };
+        
     });
 };
+forecastWeatherCards('Minneapolis');
+
+function renderForecastCards(date, temp, humid, wind, icon, hi) {
+    var cardDate = document.createElement('p');
+    //    cardDate.setAttribute("id", "")
+    //    cardDate.setAttribute("class", "")
+       cardDate.textContent = date ;
+       
+      $("#" + hi).append(cardDate);
+      console.log(hi)
+
+    
+
+}
+
 
 //Listens for the search button click, then sends the value of the search textarea to the weatherSearch function
 $('#search').click(function(){
@@ -138,3 +225,13 @@ $('button').click(function() {
     weatherSearch(btnValue);
 });
 
+// switch (icon) {
+
+
+//     case "":
+//         weatherIcon = '<h1 class="icon ml-5"><i class="weather-logo fas fa-cloud-sun"></i> Clouds</h1>`;
+//         break;
+        
+
+
+// }
