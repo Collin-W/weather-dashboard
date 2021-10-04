@@ -206,6 +206,7 @@ $('#search').click(function () {
 
 $('button').click(function () {
     var btnValue = $(this).attr('value');
+    dataArray = [];
     $('#search-city').val('');
     $("#city-dash").empty();
     $('.forecast-card').empty();
