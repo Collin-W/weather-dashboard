@@ -1,7 +1,6 @@
 # Weather Dashboard App
 
-## Link: 
-https://collin-w.github.io/weather-dashboard/
+## Link: https://collin-w.github.io/weather-dashboard/
 
 ![Screenshot (25)](https://user-images.githubusercontent.com/88279562/135875846-f2fa7903-4842-4f47-8149-9f5cf817a860.png)
 
