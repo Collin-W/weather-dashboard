@@ -59,6 +59,9 @@ var renderWeatherSearch = function (city, date,
     } else if (icon.startsWith("partly") === true) {
         icon = "fas fa-cloud-sun";
 
+    } else if (icon.startsWith("fog") === true) {
+        icon = "fas fa-smog";
+
     } else {
         console.log("else");
     };
@@ -130,9 +133,7 @@ function forecastWeatherCards(location) {
                     //console.log(list[i].dt_txt);
 
                     var date = list[i].dt_txt
-                   // console.log(date)
                     var temp = list[i].main.temp
-                   // console.log(temp)
                     var humidity = list[i].main.humidity
                     var pressure = list[i].main.pressure
                     var wind = list[i].wind.speed
@@ -155,6 +156,7 @@ function forecastWeatherCards(location) {
 
 
 function renderForecastCards(dataArray) {
+    console.log(dataArray);
 
     for (var i = 0; i < dataArray.length; i++) {
 
@@ -166,7 +168,7 @@ function renderForecastCards(dataArray) {
 
         var cardKelvinTemp = ((dataArray[i].temp - 273.15) * 9 / 5 + 32);
         var cardFahrenheitTemp = Math.round(cardKelvinTemp);
-        console.log(cardFahrenheitTemp)
+       // console.log(cardFahrenheitTemp)
         var cardTemp = document.createElement('p');
         cardTemp.setAttribute("id", "")
         cardTemp.setAttribute("class", "forecast-card")
@@ -206,6 +208,7 @@ $('button').click(function () {
     var btnValue = $(this).attr('value');
     $('#search-city').val('');
     $("#city-dash").empty();
+    $('.forecast-card').empty();
     weatherSearch(btnValue);
     forecastWeatherCards(btnValue);
 });

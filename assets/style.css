@@ -19,6 +19,7 @@ body {
     padding: 3% 3% 3% 3%;
     color: #a4508b;
     background-color: #90d5ec;
+    font-weight: 625;
     font-size: 1.2em;
     border-radius: 15px;
 }
@@ -27,7 +28,6 @@ body {
     color: #f9c1b1;
     background-color: #fb8085;
     font-size: 1.3em;
-
 }
 
 #city-dash {
