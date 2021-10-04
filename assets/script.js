@@ -3,6 +3,7 @@ var counter = 0;
 var dataArray = [];
 
 
+
 //accepts the location argument into the fetch function, returning a temperature of location converted to fahrenheit
 function weatherSearch(location) {
 
@@ -58,10 +59,7 @@ function weatherSearch(location) {
 var renderWeatherSearch = function (city, date,
     temp, humid, pres, wind, icon) {
 
-
-    
-    console.log(icon);
-
+        
 
 
     //render icons
@@ -73,7 +71,6 @@ var renderWeatherSearch = function (city, date,
 
     } else if (icon.startsWith("clear") === true) {
         icon = "fas fa-sun"
-
 
     } else if (icon.startsWith("rain") === true) {
         icon = "fas fa-cloud-showers-heavy"
@@ -127,15 +124,18 @@ var renderWeatherSearch = function (city, date,
     cityWind.textContent = "Wind: " + wind + "mph";
     dash.appendChild(cityWind);
 
+
+    
     var iconLogo = document.createElement('i')
     var h1Tag = document.createElement('h1')
     h1Tag.setAttribute("class" , "reset")
-    iconLogo.setAttribute("class", "reset")
-    iconLogo.setAttribute("id", "logo")
-    iconLogo.setAttribute("aria-hidden", "true")
+    iconLogo.setAttribute("class", icon)
+    iconLogo.setAttribute("id", "reset")
+    //iconLogo.setAttribute("aria-hidden", "true")
     dash.appendChild(h1Tag);
     h1Tag.appendChild(iconLogo);
     console.log(dash.appendChild(iconLogo));
+   
 
     //    var iconLogo =  iconLogo.innerHTML(icon)
     //    //document.createElement('i');
@@ -234,10 +234,9 @@ $('#search').click(function () {
 
 $('button').click(function () {
     var btnValue = $(this).attr('value');
-    console.log(btnValue);
     $('.reset').empty();
-
-
+    // var resetIcon = document.getElementById('reset');
+    // resetIcon.remove();
     weatherSearch(btnValue);
 });
 
