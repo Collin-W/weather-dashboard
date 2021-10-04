@@ -59,11 +59,7 @@ var renderWeatherSearch = function (city, date,
     temp, humid, pres, wind, icon) {
 
 
-      
-
-
-
-
+    
     console.log(icon);
 
 
@@ -95,58 +91,48 @@ var renderWeatherSearch = function (city, date,
         console.log("else");
     };
 
-
-    // var cityName = "";
-    // var dateTime = "";
-    // var cityTemp = "";
-    // var cityHumidity = "";
-    // var cityPressure = "";
-    // var cityWind = "";
-
     var cityName = document.createElement('p');
     cityName.setAttribute("id", "")
-    cityName.setAttribute("class", "")
+    cityName.setAttribute("class", "reset")
     cityName.textContent = "" + city + "";
     dash.appendChild(cityName);
 
     var dateTime = document.createElement('p');
     dateTime.setAttribute("id", "");
-    dateTime.setAttribute("class", "");
+    dateTime.setAttribute("class", "reset");
     dateTime.textContent = date;
     dash.appendChild(dateTime);
 
-    var  cityTemp = document.createElement('p');
+    var cityTemp = document.createElement('p');
     cityTemp.setAttribute("id", "city-temp");
-    // cityTemp.textContent = "";
+    cityTemp.setAttribute("class", "reset");
     cityTemp.textContent = "Temp: " + temp + "°F";
     dash.appendChild(cityTemp);
 
-    var  cityHumidity = document.createElement('p');
+    var cityHumidity = document.createElement('p');
     cityHumidity.setAttribute("id", "")
-    cityHumidity.setAttribute("class", "")
+    cityHumidity.setAttribute("class", "reset")
     cityHumidity.textContent = "Humidity: " + humid + "%";
     dash.appendChild(cityHumidity);
 
-    var  cityPressure = document.createElement('p');
+    var cityPressure = document.createElement('p');
     cityPressure.setAttribute("id", "")
-    cityPressure.setAttribute("class", "")
+    cityPressure.setAttribute("class", "reset")
     cityPressure.textContent = "Pressure: " + pres + "mb";
     dash.appendChild(cityPressure);
 
-    var   cityWind = document.createElement('p');
+    var cityWind = document.createElement('p');
     cityWind.setAttribute("id", "")
-    cityWind.setAttribute("class", "")
+    cityWind.setAttribute("class", "reset")
     cityWind.textContent = "Wind: " + wind + "mph";
     dash.appendChild(cityWind);
 
-
-
     var iconLogo = document.createElement('i')
     var h1Tag = document.createElement('h1')
-    iconLogo.setAttribute("class", icon)
+    h1Tag.setAttribute("class" , "reset")
+    iconLogo.setAttribute("class", "reset")
     iconLogo.setAttribute("id", "logo")
-    //    iconLogo.setAttribute("aria-hidden", "true")
-
+    iconLogo.setAttribute("aria-hidden", "true")
     dash.appendChild(h1Tag);
     h1Tag.appendChild(iconLogo);
     console.log(dash.appendChild(iconLogo));
@@ -249,6 +235,7 @@ $('#search').click(function () {
 $('button').click(function () {
     var btnValue = $(this).attr('value');
     console.log(btnValue);
+    $('.reset').empty();
 
 
     weatherSearch(btnValue);
