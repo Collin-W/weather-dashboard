@@ -17,13 +17,13 @@ function weatherSearch(location) {
             var cityName = location
 
             var dateTime = moment().format('MMMM Do YYYY');
-            console.log(dateTime);
 
             var kelvinData = response.main.temp;
             var humidityData = response.main.humidity;
             var pressureData = response.main.pressure;
             var windSpeedData = response.wind.speed;
             var iconData = response.weather[0].main.toLowerCase();
+            console.log(iconData);
 
             // convert kelvin temp int to fahrenheit temp int
             var kelvinToFahrenheit = ((kelvinData - 273.15) * 9 / 5 + 32);
@@ -65,48 +65,48 @@ var renderWeatherSearch = function (city, date,
 
     var cityName = document.createElement('p');
     cityName.setAttribute("id", "");
-    cityName.setAttribute("class", "");
+    cityName.setAttribute("class", "dash");
     cityName.textContent = "" + city + "";
     dash.appendChild(cityName);
 
     var dateTime = document.createElement('p');
     dateTime.setAttribute("id", "");
-    dateTime.setAttribute("class", "");
+    dateTime.setAttribute("class", "dash");
     dateTime.textContent = date;
     dash.appendChild(dateTime);
 
     var cityTemp = document.createElement('p');
     cityTemp.setAttribute("id", "city-temp");
-    cityTemp.setAttribute("class", "");
+    cityTemp.setAttribute("class", "dash");
     cityTemp.textContent = "Temp: " + temp + "°F";
     dash.appendChild(cityTemp);
 
     var cityHumidity = document.createElement('p');
     cityHumidity.setAttribute("id", "");
-    cityHumidity.setAttribute("class", "");
+    cityHumidity.setAttribute("class", "dash");
     cityHumidity.textContent = "Humidity: " + humid + "%";
     dash.appendChild(cityHumidity);
 
     var cityPressure = document.createElement('p');
     cityPressure.setAttribute("id", "");
-    cityPressure.setAttribute("class", "");
+    cityPressure.setAttribute("class", "dash");
     cityPressure.textContent = "Pressure: " + pres + "mb";
     dash.appendChild(cityPressure);
 
     var cityWind = document.createElement('p');
     cityWind.setAttribute("id", "");
-    cityWind.setAttribute("class", "");
+    cityWind.setAttribute("class", "dash");
     cityWind.textContent = "Wind: " + wind + "mph";
     dash.appendChild(cityWind);
 
     var iconLogo = document.createElement('i');
     var h1Tag = document.createElement('h1');
-    h1Tag.setAttribute("class", "");
+    h1Tag.setAttribute("class", "dash");
     iconLogo.setAttribute("class", icon);
     iconLogo.setAttribute("id", "");
     dash.appendChild(h1Tag);
     h1Tag.appendChild(iconLogo);
-    console.log(dash.appendChild(iconLogo));
+    //console.log(dash.appendChild(iconLogo));
 };
 
 
@@ -127,21 +127,25 @@ function forecastWeatherCards(location) {
             for (var i = 0; i < list.length; i++) {
 
                 if (list[i].dt_txt.endsWith('12:00:00')) {
-                    console.log(list[i].dt_txt);
+                    //console.log(list[i].dt_txt);
 
                     var date = list[i].dt_txt
-                    console.log(date)
+                   // console.log(date)
                     var temp = list[i].main.temp
-                    console.log(temp)
+                   // console.log(temp)
                     var humidity = list[i].main.humidity
+                    var pressure = list[i].main.pressure
                     var wind = list[i].wind.speed
                     var icon = list[i].weather.icon
 
                     var dataObject = {
                         'date': date,
-                        'temp': temp
+                        'temp': temp,
+                        'humidity': humidity,
+                        'pressure': pressure,
+                        'wind': wind,
+                        'icon': icon
                     };
-
                     dataArray.push(dataObject);
                 };
             };
@@ -156,32 +160,57 @@ function renderForecastCards(dataArray) {
 
         var cardDate = document.createElement('p');
         cardDate.setAttribute("id", "");
-        cardDate.setAttribute("class", "");
-        cardDate.textContent = dataArray[i].date;
+        cardDate.setAttribute("class", "forecast-card");
+        cardDate.textContent = "Forecast for: " + dataArray[i].date + "pm";
         $('#' + i).append(cardDate);
 
+        var cardKelvinTemp = ((dataArray[i].temp - 273.15) * 9 / 5 + 32);
+        var cardFahrenheitTemp = Math.round(cardKelvinTemp);
+        console.log(cardFahrenheitTemp)
         var cardTemp = document.createElement('p');
         cardTemp.setAttribute("id", "")
-        cardTemp.setAttribute("class", "")
-        cardTemp.textContent= temp;
+        cardTemp.setAttribute("class", "forecast-card")
+        cardTemp.textContent = "Temp: " + cardFahrenheitTemp + "ºF";
+        $('#' + i).append(cardTemp);
+
+        var cardHumidity = document.createElement('p');
+        cardHumidity.setAttribute("class", "forecast-card");
+        cardHumidity.textContent = "Humidity: " + dataArray[i].humidity + "%";
+        $('#' + i).append(cardHumidity);
+
+        var cardPressure = document.createElement('p');
+        cardPressure.setAttribute("class", "forecast-card");
+        cardPressure.textContent = "Pressure: " + dataArray[i].pressure + "mb";
+        $('#' + i).append(cardPressure);
+
+        var cardWind = document.createElement('p');
+        cardWind.setAttribute("class", "forecast-card");
+        cardWind.textContent = "Wind: " + dataArray[i].wind + "mph";
+        $('#' + i).append(cardWind);
+
+        var cardIcon = document.createElement('i');
+        cardIcon.setAttribute("class", "forecast-card");
+        cardIcon.textContent = dataArray[i].icon;
+        $('#' + i).append(cardIcon);
     }
 }
 
 //Listens for the search button click, then sends the value of the search textarea to the weatherSearch function
 $('#search').click(function () {
     var searchCity = document.querySelector('#search-city').value.trim();
-    $('#search-city').empty();
     weatherSearch(searchCity);
     forecastWeatherCards(searchCity);
 });
 
 $('button').click(function () {
     var btnValue = $(this).attr('value');
+    $('#search-city').val('');
     $("#city-dash").empty();
     weatherSearch(btnValue);
+    forecastWeatherCards(btnValue);
 });
 
-forecastWeatherCards(location);
+
 
  //+ 'Minneapolis, Minnesota'
 
