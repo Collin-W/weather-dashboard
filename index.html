@@ -1,111 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/style.css">
     <title>Document</title>
 </head>
+
 <body>
-
-
-<header>
-
-    <nav class="nav-bar">
-        <h1 class="h1-text" style="text-align: center;">Weather Dashboard</h1>
-    </nav>
-    
-</header>
+    <header>
+        <nav class="nav-bar">
+            <h1 class="h1-text" style="text-align: center;">Weather Dashboard</h1>
+        </nav>
+    </header>
     <section id="main-section" class="container justify-content-between">
         <div class="row">
 
-        <div class="cities col-3">
-            <h2 class="col-12">Placeholder</h2>
+            <div class="cities col-3">
+                <h2 class="col-12">Search by city or click a location!:</h2>
 
-            <textarea id="search-city" class="col-12" placeholder="Enter A City Name!"></textarea>
-            <button id="search" class=" city-btn col-12">Search</button>
-            
-            <button class="city-btn col-12" value="Saint Paul, Mn, USA">Saint Paul, Mn</button>
-            <button class="city-btn col-12" value="Honolulu, Hi, USA">Honolulu, Hi</button>
-            <button class="city-btn col-12" value="Juneau, Ak, USA">Juneau, Ak</button>
-            <button class="city-btn col-12" value="Portland, Or, USA">Portland, Or</button>
-            <button class="city-btn col-12" value="New York, Ny, USA">New York, Ny</button>
-            <button class="city-btn col-12" value="San Juan, Pr, USA">San Juan, Pr</button>
-        </div>
-
-
-        <div class="container col-9">
-
-            <div class="row">
-
-
-            <div class="container">
-            <div class="city-dash col-12" id="city-dash">
-                <h1 id="h1"></h1>
+                <textarea id="search-city" class="col-12" placeholder="Enter A City Name!"></textarea>
+                <button id="search" class=" city-btn col-12">Search</button>
+                <button class="city-btn col-12" value="Saint Paul, Mn, USA">Saint Paul, Mn</button>
+                <button class="city-btn col-12" value="Honolulu, Hi, USA">Honolulu, Hi</button>
+                <button class="city-btn col-12" value="Juneau, Ak, USA">Juneau, Ak</button>
+                <button class="city-btn col-12" value="Portland, Or, USA">Portland, Or</button>
+                <button class="city-btn col-12" value="New York, Ny, USA">New York, Ny</button>
+                <button class="city-btn col-12" value="San Juan, Pr, USA">San Juan, Pr</button>
             </div>
-           </div>
-        </div>
 
-        
+            <div class="container col-9">
+                <div class="row">
+                    <div class="container">
+                        <div class="city-dash col-12" id="city-dash">
+                            <h1 id="h1"></h1>
+                        </div>
+                    </div>
+                </div>
 
-           <div class="container">
-            <div class="cards-container container ">
-                <div class="row justify-content-between">
+                <div class="container">
+                    <div class="cards-container container ">
+                        <div class="row justify-content-between">
 
-            <div class="card col-2">
-                <div  class="card-body">
-                    <h5 id="0" class="card-title"></h5>
-                    <p class="card-text">voluptatem rem aperiam</p>
+                            <div class="card col-2">
+                                <div class="card-body">
+                                    <h5 id="0" class="card-title"></h5>
+                                    <p class="card-text">voluptatem rem aperiam</p>
+                                </div>
+                            </div>
+
+                            <div class="card col-2">
+                                <div class="card-body">
+                                    <h5 id="1" class="card-title"></h5>
+                                    <p class="card-text">voluptatem rem aperiam</p>
+                                </div>
+                            </div>
+
+                            <div class="card col-2">
+                                <div class="card-body">
+                                    <h5 id="3" class="card-title"></h5>
+                                    <p class="card-text">voluptatem rem aperiam</p>
+                                </div>
+                            </div>
+
+                            <div class="card col-2">
+                                <div class="card-body">
+                                    <h5 id="4" class="card-title"></h5>
+                                    <p class="card-text">voluptatem rem aperiam</p>
+                                </div>
+                            </div>
+
+                            <div class="card col-2">
+                                <div class="card-body">
+                                    <h5 id="5" class="card-title"></h5>
+                                    <p class="card-text">voluptatem rem aperiam</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="card col-2">
-                <div class="card-body">
-                    <h5 id="1" class="card-title"></h5>
-                    <p class="card-text">voluptatem rem aperiam</p>
-                </div>
-            </div>
-
-            <div class="card col-2">
-                <div class="card-body">
-                    <h5 id="3" class="card-title"></h5>
-                    <p class="card-text">voluptatem rem aperiam</p>
-                </div>
-            </div>
-
-            <div class="card col-2">
-                <div class="card-body">
-                    <h5 id="4" class="card-title"></h5>
-                    <p class="card-text">voluptatem rem aperiam</p>
-                </div>
-            </div>
-
-            <div class="card col-2">
-                <div class="card-body">
-                    <h5 id="5" class="card-title"></h5>
-                    <p class="card-text">voluptatem rem aperiam</p>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
-    </div>
         </div>
     </section>
-
-
-
-
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 </html>
-
-
