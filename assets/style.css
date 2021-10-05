@@ -1,14 +1,30 @@
 body {
     margin: 0;
     width: 100%;
-    background: rgb(254, 95, 117);
+   
+     background: rgb(254, 95, 117);
     background: radial-gradient(circle, rgba(254, 95, 117, 1) 15%, rgba(253, 128, 87, 1) 64%, rgba(252, 152, 66, 1) 78%);
+ 
 }
 
 #main-section {
     width: 100%;
 }
-
+.title {
+color: wheat;
+width: 40%;
+font-size: 50px;
+margin: 1% auto 1.7% auto;
+border-bottom: 4px solid wheat;
+}
+.header-2, .header-2-cards {
+    color: wheat;
+    text-align: center;
+    margin: 2% 0 5% 0;
+}
+.header-2-cards {
+    font-weight: bolder;
+}
 .container {
     width: 100%;
 }
@@ -44,8 +60,8 @@ body {
 .city-name {
     text-align: center;
     font-size: 30px;
-    font-weight: bolder;
-    color: wheat;
+    font-weight: 500;
+    
 }
 
 .forecast-card {
@@ -111,4 +127,11 @@ body {
 .else {
     background: rgb(254, 95, 117);
     background: radial-gradient(circle, rgba(254, 95, 117, 1) 15%, rgba(253, 128, 87, 1) 64%, rgba(252, 152, 66, 1) 78%);
+}
+
+@media screen and (max-width: 760px) {
+
+.screen-saver {
+    display: none;
+}
 }
