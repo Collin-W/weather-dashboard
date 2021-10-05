@@ -41,6 +41,13 @@ body {
     text-align: center;
     font-size: 20px;
 }
+.city-name {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: wheat;
+}
+
 .forecast-card {
     text-align: center;
     font-size: 16px;
@@ -75,4 +82,33 @@ body {
 #logo {
     min-width: 20px;
     min-height: 20px;
+}
+
+
+
+/* my color gradients changed based on weather */
+
+.cloud {
+    background: rgb(255,255,178);
+    background: radial-gradient(circle, rgba(255,255,178,1) 0%, rgba(210,210,210,1) 9%, rgba(243,238,225,1) 24%, rgba(211,223,228,1) 63%, rgba(135,206,235,1) 89%);
+}
+.snow {
+    background: rgb(85,110,170);
+    background: linear-gradient(180deg, rgba(85,110,170,1) 0%, rgba(123,155,195,1) 18%, rgba(210,210,212,1) 65%, rgba(233,233,233,1) 89%);
+}
+.clear {
+    background: rgb(242,242,122);
+    background: radial-gradient(circle, rgba(242,242,122,1) 10%, rgba(135,206,235,1) 45%);
+}
+.rain {
+    background: rgb(246,246,246);
+    background: linear-gradient(180deg, rgba(246,246,246,1) 0%, rgba(196,211,223,1) 45%);
+}
+.fog {
+    background: rgb(198,201,201);
+    background: linear-gradient(0deg, rgba(198,201,201,1) 51%, rgba(253,254,255,1) 100%);
+}
+.else {
+    background: rgb(254, 95, 117);
+    background: radial-gradient(circle, rgba(254, 95, 117, 1) 15%, rgba(253, 128, 87, 1) 64%, rgba(252, 152, 66, 1) 78%);
 }

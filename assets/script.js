@@ -1,3 +1,4 @@
+var body = document.querySelector("body");
 var dash = document.querySelector("#city-dash");
 var dataArray = [];
 
@@ -40,35 +41,40 @@ var renderWeatherSearch = function (city, date,
     //render icons
     if (icon.startsWith("cloud") === true) {
         icon = "fas fa-cloud";
-
-    } else if (icon.startsWith("sun") === true) {
-        icon = "far fa-snowflake";
+        //$("body").addClass('cloud')
 
     } else if (icon.startsWith("clear") === true) {
         icon = "fas fa-sun";
+        //$("body").addClass('clear')
 
     } else if (icon.startsWith("rain") === true) {
         icon = "fas fa-cloud-showers-heavy";
+        //$("body").addClass('rain')
 
     } else if (icon.startsWith("mist") === true) {
         icon = "fas fa-smog";
+        //$("body").addClass('fog')
 
     } else if (icon.startsWith("snow") === true) {
         icon = "far fa-snowflake";
+        //$("body").addClass('snow')
 
     } else if (icon.startsWith("partly") === true) {
         icon = "fas fa-cloud-sun";
+        //$("body").addClass('cloud')
+
 
     } else if (icon.startsWith("fog") === true) {
         icon = "fas fa-smog";
+        //$("body").addClass('fog')
 
     } else {
-        console.log("else");
+        //$("body").addClass('else')
     };
 
     var cityName = document.createElement('p');
     cityName.setAttribute("id", "");
-    cityName.setAttribute("class", "dash");
+    cityName.setAttribute("class", "city-name");
     cityName.textContent = "" + city + "";
     dash.appendChild(cityName);
 
@@ -207,6 +213,7 @@ $('#search').click(function () {
 $('button').click(function () {
     var btnValue = $(this).attr('value');
     dataArray = [];
+    $('#card-container').show();
     $('#search-city').val('');
     $("#city-dash").empty();
     $('.forecast-card').empty();
@@ -214,6 +221,7 @@ $('button').click(function () {
     forecastWeatherCards(btnValue);
 });
 
+$('#card-container').hide();
 
 
  //+ 'Minneapolis, Minnesota'
