@@ -1,6 +1,7 @@
 var body = document.querySelector("body");
 var dash = document.querySelector("#city-dash");
 var dataArray = [];
+var cityNameHistoryArray = JSON.parse(localStorage.getItem('city')) || [];
 
 
 //accepts the location argument into the fetch function
@@ -24,7 +25,6 @@ function weatherSearch(location) {
             var pressureData = response.main.pressure;
             var windSpeedData = response.wind.speed;
             var iconData = response.weather[0].main.toLowerCase();
-            console.log(iconData);
 
             // convert kelvin temp int to fahrenheit temp int
             var kelvinToFahrenheit = ((kelvinData - 273.15) * 9 / 5 + 32);
@@ -38,7 +38,7 @@ function weatherSearch(location) {
 var renderWeatherSearch = function (city, date,
     temp, humid, pres, wind, icon) {
 
-    //render icons
+    //render icons with if statements
     if (icon.startsWith("cloud") === true) {
         icon = "fas fa-cloud";
         //$("body").addClass('cloud')
@@ -72,6 +72,7 @@ var renderWeatherSearch = function (city, date,
         //$("body").addClass('else')
     };
 
+    //renders information to the dashboard
     var cityName = document.createElement('p');
     cityName.setAttribute("id", "");
     cityName.setAttribute("class", "city-name");
@@ -118,7 +119,7 @@ var renderWeatherSearch = function (city, date,
     //console.log(dash.appendChild(iconLogo));
 };
 
-
+// this is a secound api for the forecasted weather 
 function forecastWeatherCards(location) {
 
     fetch('https://api.openweathermap.org/data/2.5/forecast?q='
@@ -160,7 +161,7 @@ function forecastWeatherCards(location) {
         });
 };
 
-
+// this renders the forecast cards while looping to an addtional card
 function renderForecastCards(dataArray) {
     console.log(dataArray);
 
@@ -203,13 +204,39 @@ function renderForecastCards(dataArray) {
     }
 }
 
+// when a user searches for a city, a new button is created and saved to local storage
+function citySearchStorage(location) {
+
+    var addedToArray = location;
+    cityNameHistoryArray.push(addedToArray);
+    localStorage.setItem('city', JSON.stringify(cityNameHistoryArray));
+   // newCityButton(storedArray)
+   newCityButton()
+}
+
+// this makes a new button for items saved to local storage
+function newCityButton() {
+
+    for(var i = 0; i < cityNameHistoryArray.length; i++) {
+
+        var newBtn = document.createElement('button');
+        newBtn.setAttribute('class', 'city-btn col-12');
+        newBtn.setAttribute('value', cityNameHistoryArray[i]);
+        newBtn.textContent = cityNameHistoryArray
+        $('#btnHolder').append(newBtn);
+    }
+}
+
 //Listens for the search button click, then sends the value of the search textarea to the weatherSearch function
 $('#search').click(function () {
     var searchCity = document.querySelector('#search-city').value.trim();
     weatherSearch(searchCity);
     forecastWeatherCards(searchCity);
+    citySearchStorage(searchCity);
 });
 
+
+// listens for all button clicks
 $('button').click(function () {
     var btnValue = $(this).attr('value');
     dataArray = [];

@@ -2,9 +2,14 @@ body {
     margin: 0;
     width: 100%;
    
-     background: rgb(254, 95, 117);
+    background: rgb(254, 95, 117);
     background: radial-gradient(circle, rgba(254, 95, 117, 1) 15%, rgba(253, 128, 87, 1) 64%, rgba(252, 152, 66, 1) 78%);
  
+    
+    /* background: rgb(242,242,122); 
+    background: radial-gradient(circle, rgba(242,242,122,1) 10%, rgba(135,206,235,1) 45%);
+*/
+
 }
 
 #main-section {
